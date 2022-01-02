@@ -1,3 +1,7 @@
+# Overwiew Lanes
+
+Questo è un overview generale della Metaclasse Lanes.
+
 exec lane ->
 	1. Raccogli proposte
 	2. Determina ideale
