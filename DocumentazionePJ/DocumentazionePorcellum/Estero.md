@@ -14,13 +14,13 @@ external:
   circoscrizioni_estere:
     init: True
 ```
-Abbiamo specificato il fatto che Estero ha gli attributi :
-- seggi : di tipo intero che deve essere inizializzato
-- circoscrizioni_estere : deve essere inizializzato
+Abbiamo specificato il fatto che Estero ha gli attributi:
+- seggi: di tipo intero che deve essere inizializzato
+- circoscrizioni_estere: deve essere inizializzato
 
 I valori che questi due parametri prenderanno possono essere trovati al file [Instances/Estero.yaml]
 
-Nello yaml ci riferiamo a questi attributi con la sintassi self.get_nomeAttributo :
+Nello yaml ci riferiamo a questi attributi con la sintassi self.get_nomeAttributo:
 
 ```yaml
 source:
@@ -46,7 +46,7 @@ subdivisions:
 Abbiamo specificato che l'Estero è suddiviso sulla base dell'attributo "circoscrizioni_estere" il quale sarà di tipo Circoscrizione_Estera, vedere la configurazione al file [Classes/Circoscrizione_Estera.yaml].
 
 Abbiamo inoltre esposto le funzioni di circoscrizioni_estere:
-- liste : che andrà a prendere il totals liste in Circoscrizione_Estera.yaml
+- liste: che andrà a prendere il totals liste in Circoscrizione_Estera.yaml
 
 Nello yaml ci riferiamo a queste funzioni possono essere con la sintassi self.subs_nomeSubdivision_nomeFunzione :
 
@@ -74,7 +74,7 @@ lane:
         corrector: Commons.correct_porcellum_estero
 ```
 
-L'entità Estero avrà un lane con nome 'estero' così configurata :
+L'entità Estero avrà un lane con nome 'estero' così configurata:
 - sarà di tipo head
 - avrà priorità 1
 - la lane di livello inferiore la si trova in [Classes/Circoscrizione_Estera.yaml]
@@ -100,7 +100,7 @@ lanes_propose:
       - Voti
 ```
 
-La proposta 'liste' ha questa configurazine :
+La proposta 'liste' ha questa configurazione:
 - chiamerà la funzione estero (vedere totals_support per chiarimenti)
 - la distribuzione ritornata avrà le colonne Lista, Seggi (in questo ordine)
 - info avrà solo il campo Voti
@@ -125,16 +125,16 @@ totals:
       Voti: sum
 ```
 
-Il totals 'liste' ha questa configurazine :
+Il totals 'liste' ha questa configurazione:
 - è di tipo aggregazione
-- la sua input di dati è la funzione self.subs_circoscrizioni_estere_liste (vedere external per chiarimenti)
+- il suo input di dati è la funzione self.subs_circoscrizioni_estere_liste (vedere external per chiarimenti)
 - ritorna un dataframe con le colonne Lista, Voti
 - aggrega i dati sulle chiavi Lista
 - sui dati aggregati esegue l'operazione sum sul campo Voti
 
 ---
 ## Totals_Support
-Qui definiamo delle funzione totals di supporto sulle quali avviene anche il filtraggio dei dati.
+Qui definiamo delle funzioni totals di supporto sulle quali avviene anche il filtraggio dei dati.
 
 ```yaml
 totals_support:
@@ -156,7 +156,7 @@ totals_support:
                 name: self.get_seggi
 ```
 
-Il totals_support 'estero' ha questa configurazione :
+Il totals_support 'estero' ha questa configurazione:
 - è di tipo trasformazione
 - il parametro 'data' della funzione che verrà chiamata avrà come sorgente il totals 'liste' e prenderà come valore di filtraggio 'estero'
 - la trasformazione è su un dataframe

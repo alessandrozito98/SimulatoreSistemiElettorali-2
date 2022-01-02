@@ -14,13 +14,13 @@ external:
   circoscrizioni:
     init: True
 ```
-Abbiamo specificato il fatto che Nazione ha gli attributi :
-- seggi : di tipo intero che deve essere inizializzato
-- circoscrizioni : deve essere inizializzato
+Abbiamo specificato il fatto che Nazione ha gli attributi:
+- seggi: di tipo intero che deve essere inizializzato
+- circoscrizioni: deve essere inizializzato
 
 I valori che questi due parametri prenderanno possono essere trovati al file [Instances/Nazione.yaml]
 
-Nello yaml ci riferiamo a questi attributi con la sintassi self.get_nomeAttributo :
+Nello yaml ci riferiamo a questi attributi con la sintassi self.get_nomeAttributo:
 
 ```yaml
 source:
@@ -52,11 +52,11 @@ subdivisions:
 Abbiamo specificato che la Nazione è suddivisa sulla base dell'attributo "circoscrizioni" il quale sarà di tipo Circoscrizione, vedere la configurazione al file [Classes/Circoscrizione.yaml].
 
 Abbiamo inoltre esposto le funzioni di circoscrizione:
-- liste : che andrà a prendere il totals liste in Circoscrizione.yaml
-- coalizioni : che andrà a prendere il totals coalizioni in Circoscrizione.yaml
-- regioniListe : che andrà a prendere il totals regioniListe in Circoscrizione.yaml
+- liste: che andrà a prendere il totals liste in Circoscrizione.yaml
+- coalizioni: che andrà a prendere il totals coalizioni in Circoscrizione.yaml
+- regioniListe: che andrà a prendere il totals regioniListe in Circoscrizione.yaml
 
-Nello yaml ci riferiamo a queste funzioni possono essere con la sintassi self.subs_nomeSubdivision_nomeFunzione :
+Nello yaml ci riferiamo a queste funzioni possono essere con la sintassi self.subs_nomeSubdivision_nomeFunzione:
 
 ```yaml
 source:
@@ -85,7 +85,7 @@ lane:
         corrector: Commons.correct_porcellum_partiti
 ```
 
-L'entità Nazione avrà un lane con nome 'lista' così configurata :
+L'entità Nazione avrà un lane con nome 'lista' così configurata:
 - sarà di tipo head
 - avrà priorità 1
 - la lane di livello inferiore la si trova in [Classes/Circoscrizione.yaml]
@@ -116,7 +116,7 @@ lanes_propose:
       - Voti
 ```
 
-La proposta 'liste' ha questa configurazine :
+La proposta 'liste' ha questa configurazione:
 - chiamerà la funzione distribuisci_seggi (vedere totals_support per chiarimenti)
 - la distribuzione ritornata avrà le colonne Partito, Seggi, Coalizione (in questo ordine)
 - info avrà solo il campo Voti
@@ -143,16 +143,16 @@ totals:
       Voti: sum
 ```
 
-Il totals 'liste' ha questa configurazine :
+Il totals 'liste' ha questa configurazione:
 - è di tipo aggregazione
-- la sua input di dati è la funzione self.subs_circoscrizioni_liste (vedere external per chiarimenti)
+- il suo input di dati è la funzione self.subs_circoscrizioni_liste (vedere external per chiarimenti)
 - ritorna un dataframe con le colonne Partito, Coalizione, Voti
 - aggrega i dati sulle chiavi Coalizione, Partito
 - sui dati aggregati esegue l'operazione sum sul campo Voti
 
 ---
 ## Totals_Support
-Qui definiamo delle funzione totals di supporto sulle quali avviene anche il filtraggio dei dati.
+Qui definiamo delle funzioni totals di supporto sulle quali avviene anche il filtraggio dei dati.
 
 ```yaml
 totals_support:
@@ -195,7 +195,7 @@ totals_support:
               False
 ```
 
-Il totals_support 'distribuisci_seggi' ha questa configurazione :
+Il totals_support 'distribuisci_seggi' ha questa configurazione:
 - è di tipo trasformazione
 - il parametro 'data' della funzione che verrà chiamata avrà come sorgente il totals 'coalizioni' e prenderà come valore di filtraggio 'elette'
 - la trasformazione è su un dataframe

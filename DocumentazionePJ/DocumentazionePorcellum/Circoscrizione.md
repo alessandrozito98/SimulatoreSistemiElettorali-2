@@ -13,13 +13,13 @@ external:
   numero_seggi:
     init: True
 ```
-Abbiamo specificato il fatto che Circoscrizione ha gli attributi :
-- numero_seggi : deve essere inizializzato
-- regioni : deve essere inizializzato
+Abbiamo specificato il fatto che Circoscrizione ha gli attributi:
+- numero_seggi: deve essere inizializzato
+- regioni: deve essere inizializzato
 
 I valori che questi due parametri prenderanno possono essere trovati al file [Instances/Circoscrizione.yaml]
 
-Nello yaml ci riferiamo a questi attributi con la sintassi self.get_nomeAttributo :
+Nello yaml ci riferiamo a questi attributi con la sintassi self.get_nomeAttributo:
 
 ```yaml
 source:
@@ -54,9 +54,9 @@ subdivisions:
 Abbiamo specificato che la Circoscrizione è suddivisa sulla base dell'attributo "regioni" il quale sarà di tipo Regione, vedere la configurazione al file [Classes/Regione.yaml].
 
 Abbiamo inoltre esposto le funzioni di regioni:
-- liste : che andrà a prendere la funzione self.get_voti_liste in Regione.yaml
-- coalizioni : che andrà a prendere la funzione self.get_voti_coalizioni in Regione.yaml
-- regioniListe : che andrà a prendere la funzione self.get_voti_regionali in Regione.yaml
+- liste: che andrà a prendere la funzione self.get_voti_liste in Regione.yaml
+- coalizioni: che andrà a prendere la funzione self.get_voti_coalizioni in Regione.yaml
+- regioniListe: che andrà a prendere la funzione self.get_voti_regionali in Regione.yaml
 
 Nello yaml ci riferiamo a queste funzioni con la sintassi self.subs_nomeSubdivision_nomeFunzione :
 
@@ -110,8 +110,8 @@ lanes_propose:
       - Indice
 ```
 
-La proposta 'liste' ha questa configurazine :
-- chiamerà la funzione divisione_circoscrizionale_seggi che prende questi parametri :
+La proposta 'liste' ha questa configurazine:
+- chiamerà la funzione divisione_circoscrizionale_seggi che prende questi parametri:
     - district_votes il cui valore viene preso dal totals liste
     - seggi il cui valore viene preso dall'attributo della circoscrizione
 - la distribuzione ritornata avrà le colonne Eleggibile, Seggi, Voti_Circ, Resto, Resto_Usato (in questo ordine)
@@ -139,9 +139,9 @@ totals:
       Voti: sum
 ```
 
-Il totals 'liste' ha questa configurazine :
+Il totals 'liste' ha questa configurazione:
 - è di tipo aggregazione
-- la sua input di dati è la funzione self.subs_regioni_liste (vedere external per chiarimenti)
+- il suo input di dati è la funzione self.subs_regioni_liste (vedere external per chiarimenti)
 - ritorna un dataframe con le colonne Partito, Coalizione, Voti (la colonna Partito è ottenuta rinnominando Lista)
 - aggrega i dati sulle chiavi Coalizione, Partito
 - sui dati aggregati esegue l'operazione sum sul campo Voti

@@ -13,12 +13,12 @@ external:
       - LISTA -> Partito
       - VOTI_LISTA -> Voti
 ```
-Abbiamo specificato il fatto che Valle_Aosta ha gli attributi :
-- voti_valle_d_aosta : avendo il campo columns capiamo che questo attributo prende dei dati dal file con lo stesso nome della funzione, quindi [Data/Circoscrizione_Estera/voti_estero.csv]
+Abbiamo specificato il fatto che Valle_Aosta ha gli attributi:
+- voti_valle_d_aosta: avendo il campo columns capiamo che questo attributo prende dei dati dal file con lo stesso nome della funzione, quindi [Data/Circoscrizione_Estera/voti_estero.csv]
 
 I valori che questi due parametri prenderanno possono essere trovati al file [Data/Valle_Aosta/voti_valle_d_aosta.csv]
 
-Nello yaml ci riferiamo a questi attributi con la sintassi self.nomeAttributo :
+Nello yaml ci riferiamo a questi attributi con la sintassi self.nomeAttributo:
 
 ```yaml
 source:
@@ -40,11 +40,11 @@ lane:
     info_name: Valle D'Aosta
 ```
 
-L'entità Valle_Aosta avrà un lane con nome 'valle_d_aosta' così configurata :
+L'entità Valle_Aosta avrà un lane con nome 'valle_d_aosta' così configurata:
 - sarà di tipo only
 - avrà priorità 1
 - il nome della lane è Valle D'Aosta
-- la distribuzione è data dalla lane_propose uninom
+- la distribuzione è data dalla lane_propose 'uninom'
 
 ---
 ## Lane_Propose
@@ -63,7 +63,7 @@ lanes_propose:
       - Numero
 ```
 
-La proposta 'uninom' ha questa configurazine :
+La proposta 'uninom' ha questa configurazine:
 - chiamerà la funzione self.valle_d_aosta (vedere totals_support per chiarimenti)
 - la distribuzione ritornata avrà le colonne Partito, Seggi (in questo ordine)
 - info avrà solo il campo Numero
@@ -91,17 +91,17 @@ totals:
       VOTI_LISTA: sum
 ```
 
-Il totals 'liste' ha questa configurazine :
+Il totals 'liste' ha questa configurazione:
 - è di tipo aggregazione
-- la sua input di dati è la funzione self.voti_valle_d_aosta (vedere external per chiarimenti)
+- il suo input di dati è la funzione self.voti_valle_d_aosta (vedere external per chiarimenti)
 - ritorna un dataframe con le colonne LISTA, VOTI_LISTA
 - aggrega i dati sulle chiavi LISTA
 - sui dati aggregati esegue l'operazione sum sul campo VOTI_LISTA
-- le colonne LISTA, VOTI_LISTA del dataframe verranno rinnominate rispettivamente Partito, Voti
+- le colonne LISTA, VOTI_LISTA del dataframe verranno rinominate rispettivamente Partito, Voti
 
 ---
 ## Totals_Support
-Qui definiamo delle funzione totals di supporto sulle quali avviene anche il filtraggio dei dati.
+Qui definiamo delle funzioni totals di supporto sulle quali avviene anche il filtraggio dei dati.
 
 ```yaml
 totals_support:
@@ -116,11 +116,11 @@ totals_support:
           name: Commons.distrib_porcellum_aosta
 ```
 
-Il totals_support 'valle_d_aosta' ha questa configurazione :
+Il totals_support 'valle_d_aosta' ha questa configurazione:
 - è di tipo trasformazione
 - il parametro 'data' della funzione che verrà chiamata avrà come sorgente il totals 'liste'
 - la trasformazione è su un dataframe
-- la funzione da chiamare è 'Commons.distrib_porcellum_aosta' alla quale non servono ulteriori ulteriori parametri
+- la funzione da chiamare è 'Commons.distrib_porcellum_aosta' alla quale non servono ulteriori parametri
 
 ---
 

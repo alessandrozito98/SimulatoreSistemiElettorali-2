@@ -23,10 +23,10 @@ external:
       - COALIZIONE -> Coalizione
       - VOTI_LISTA -> Voti
 ```
-Abbiamo specificato il fatto che Nazione ha gli attributi :
-- voti_regionali : restituisce i dati in dataframe in colonne Regione, Coalizione, Lista, Voti prendendo i dati da [Data/Regione/voti_regionali.csv]
-- voti_liste : restituisce i dati in dataframe in colonne Coalizione, Lista, Voti prendendo i dati da [Data/Regione/voti_liste.csv]
-- voti_coalizioni : restituisce i dati in dataframe in colonne Coalizione, Voti prendendo i dati da [Data/Regione/voti_coalizioni.csv]
+Abbiamo specificato il fatto che Nazione ha gli attributi:
+- voti_regionali: restituisce i dati in dataframe in colonne Regione, Coalizione, Lista, Voti prendendo i dati da [Data/Regione/voti_regionali.csv]
+- voti_liste: restituisce i dati in dataframe in colonne Coalizione, Lista, Voti prendendo i dati da [Data/Regione/voti_liste.csv]
+- voti_coalizioni: restituisce i dati in dataframe in colonne Coalizione, Voti prendendo i dati da [Data/Regione/voti_coalizioni.csv]
 
 ---
 

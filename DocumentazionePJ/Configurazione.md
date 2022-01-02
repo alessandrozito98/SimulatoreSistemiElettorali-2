@@ -61,7 +61,7 @@ Le chiavi del dizionario interno a `targets` sono :
 *Risultati :* vengono generate le variabili e le funzioni con il seguente schema :
 + `give_{chiave_del_dizionario}`
 + `get_{chiave_del_dizionario_o_name_o_chiave_di_external}`
-+ se `init` è `True` allora aggiunge un valore che è richiesto in fase di istanziazione, a meno che default sia presente, in tal caso inserisce il valore di default
++ se `init` è `True` allora aggiunge un valore che è richiesto in fase d'istanziazione, a meno che default sia presente, in tal caso inserisce il valore di default
 
 
 ---
@@ -74,13 +74,13 @@ Questa metaclasse definisce le relazioni tra due classi di aree geografiche e id
 *Parola Chiave nel File :* `subdivisions`
 
 *Parametri :* un dizionario le cui chiavi indicano il nome della variabile in cui salvare l'istanza del sottolivello.
-Ad ogni chiave viene associato un dizionario avente la seguente configurazione :
+A ogni chiave viene associato un dizionario avente la seguente configurazione:
 + `type` : il nome della classe
-+ `functions` : una lista di dizionari, ogni dizionario ha :
++ `functions` : una lista di dizionari, ogni dizionario ha:
     + `name` : il nome della funzione da esporre
     + `source` : una definizione tramite source della funzione da eseguire. Si assume che nell'esecuzione di source "self" nel namespace si riferirà ad una sottodivisione
 
-La funzione verrà chiamata su ogni istanza del sottolivello e i risultati saranno aggregati :
+La funzione verrà chiamata su ogni istanza del sottolivello e i risultati saranno aggregati:
 + se di tipo `int` verranno sommati
 + se di tipo `DataFrame` verranno concatenati
 + altrimenti concatenati in una lista
@@ -129,7 +129,7 @@ Solo per `head` e `node` :
 + `sub_level` : indica il tipo del nodo al livello inferiore
 + `operations` : una lista di dizionari che specificano delle operazioni, queste operazioni sono concatenate per trasformare una distribuzione di input in una da passare al livello inferiore e per generare informazioni aggiuntive
 
-Definizione del dizionari di `operations` :
+Definizione del dizionario di `operations` :
 + `collect_type`: Il tipo di propose da chiamare per raccogliere proposte dai livelli inferiori
 + `ideal_distribution`: può essere
     + `$` : per riferirsi all'ultima distribuzione valida
@@ -141,13 +141,13 @@ Definizione del dizionari di `operations` :
         + la distribuzione ideale
         + un dizionario contenente le distribuzioni raccolte dai livelli inferiori
         + un dizionario contenente le informazioni raccolte dai livelli inferiori
-        + una lista di informazioni, il primo elemento riguarda esclusivamente il distretto corrente
+        + una lista d'informazioni, il primo elemento riguarda esclusivamente il distretto corrente
  
     - restituisce:
         + un dizionario di distribuzioni da inoltrare ai livelli inferiori
-        + un dizionario di informazioni da inoltrare ai livelli inferiori
+        + un dizionario d'informazioni da inoltrare ai livelli inferiori
         + informazioni comuni a tutti i livelli inferiori
-+ `collect_constraint` : che può avere i valori :
++ `collect_constraint` : che può avere i valori:
     + `None` : per non porre limitazioni alla distribuzione generata dai livelli inferiori
     + `$` : per inoltrare la distribuzione corrente
     + `nome_di_una_propose` : per inoltrare il risultato della propose avente il nome specificato del distretto corrente
@@ -166,15 +166,15 @@ Queste parte definisce la struttura della distribuzione di ritorno e quale funzi
 
 Propose viene chiamata con i seguenti parametri:
 + nome della funzione che intendo chiamare
-+ `info` : lista di informazioni dalla più recente alla più vecchia
++ `info` : lista d'informazioni dalla più recente alla più vecchia
 + `distribution` : indica la distribuzione già definita
-+ `constraint` : kwarg, indica la distribuzione da rispettare (per esempio la distribuzione di seggi ad una lista deve rispettare la distribuzione tra coalizioni)
++ `constraint` : kwarg, indica la distribuzione da rispettare (per esempio la distribuzione di seggi a una lista deve rispettare la distribuzione tra coalizioni)
 
 #### Configurazione
-*Parola Chiave nel File :* `lanes_propose`
+*Parola Chiave nel File:* `lanes_propose`
 
-*Parametri :* un dizionario con chiavi i nomi delle propose.
-A ogni propose è associato un dizionario così definito :
+*Parametri:* un dizionario con chiavi i nomi delle propose.
+A ogni propose è associato un dizionario così definito:
 + `source` : contiene una funzione che restituisce i dati su cui eseguire poi la funzione generatrice della distribuzione.
 Questa funzione può essere definita in qualunque modo ma deve:
     1. accettare i parametri kwargs: information, constraint, distribution
@@ -204,10 +204,10 @@ Configurazione dizionario di `distribution`:
 #### Funzionalità
 Questa metaclasse mette a disposizione un sistema per la definizione operazioni su dataframe.
 
-*Parola Chiave nel File :* `totals` e `totals_support`
+*Parola Chiave nel File:* `totals` e `totals_support`
 
-La differenza tra le due parole chiavi risiede nella modalità di chiamata della funzione :
-+ le funzioni `totals` hanno questa modalità di chiamata :
+La differenza tra le due parole chiavi risiede nella modalità di chiamata della funzione:
++ le funzioni `totals` hanno questa modalità di chiamata:
 `self.totals(nome_funzione, *sbarramenti, **kwargs)`
 + invece `totals_support` utilizzano una sintassi differente : `self.nome_funzione(**kwargs)`
 
@@ -229,14 +229,14 @@ Qui è dove `**kwargs` e `*sbarramenti` vengono inoltrati.
 
 Solo per `aggregate` :
 + `keys` : una lista di stringhe che indica quali colonne costituiscono la chiave
-+ `ops` : un dizionario `nome_colonna : nome_op`, dove `nome_op` è :
++ `ops` : un dizionario `nome_colonna : nome_op`, dove `nome_op` è:
     + `mean` : per la media aritmetica
     + `median` : per la mediana
     + `sum` : per la somma
     + `prod` : per il prodotto
     + o il nome di una funzione in commons
 
-Solo per `combination` :
+Solo per `combination`:
 + `function` : una stringa che indica la funzione da chiamare, avente i seguenti parametri:
     + un dataframe passato posizionalmente
     + un numero arbitrario di argomenti posizionali
@@ -249,8 +249,8 @@ Solo per `combination` :
         + `type` : `series`, `dataframe` o `scalar`
         + `source`
 
-**Nota su combination :** `combination` opera facendo il merge su `merge_keys` di tutti i dataframe e facendo groupby sul risultato usando `keys`. Per ogni gruppo risultante sarà chiamata la funzione
-passando :
+**Nota su combination:** `combination` opera facendo il merge su `merge_keys` di tutti i dataframe e facendo groupby sul risultato usando `keys`. Per ogni gruppo risultante sarà chiamata la funzione
+passando:
 + la slice di dataframe corrispondente
 + tutti i parametri `scalar`
 + per ogni `series` la linea corrispondente alla chiave del gruppo trattandola come un dizionario passato per kwargs.  
@@ -259,8 +259,8 @@ Una `series` è un oggetto di tipo dataframe con almeno le colonne `keys`, dove 
 
 Solo per `transform` :
 + `ops` : una lista di dizionari, a seconda del valore associato alla chiave `type` verrà trattato come:
-    + transform column : applica un'operazione a tutti gli elementi di una data colonna, sovrascrivendola o creando una nuova colonna
-    + transform line : chiama per ogni linea la funzione usando la linea come dizionario di `**kwargs`
+    + transform column: applica un'operazione a tutti gli elementi di una data colonna, sovrascrivendola o creando una nuova colonna
+    + transform line: chiama per ogni linea la funzione usando la linea come dizionario di `**kwargs`
     + transform dataframe: applica la funzione a tutto il dataframe
 
 Le operazioni vengono eseguite in sequenza
@@ -282,13 +282,13 @@ Transform ops:
 ## Candidate
 #### Funzionalità
 Questa classe definisce le due funzioni necessarie per un candidato:
-1. ricevere proposte di seggi dove si è stati eletti (e eventuali informazioni aggiuntive)
+1. ricevere proposte di seggi dove si è stati eletti (ed eventuali informazioni aggiuntive)
 2. dove ci siano opportunità multiple il candidato deve scegliere quale accettare e quali rifiutare
 
 #### Configurazione
-*Parola Chiave nel File :* `candidate`
+*Parola Chiave nel File:* `candidate`
 
-*Parametri :* un dizionario con la seguente configurazione :
+*Parametri:* un dizionario con la seguente configurazione:
 + `info_vars` : lista di variabili della classe Candidato che saranno aggiunte alle informazioni restituite quando un candidato viene eletto
 + `criteria` : può essere:
     + `first` : per indicare la prima proposta ricevuta

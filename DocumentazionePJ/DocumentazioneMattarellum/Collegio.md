@@ -49,7 +49,7 @@ totals_support:
           name: Commons.select_vincente_mattarellum
 ```
 
-Collegio avrà le seguenti funzioni totals_support, chiambili tramite nome(...):
+Collegio avrà le seguenti funzioni totals_support, chiamabili tramite nome(...):
 + get_vincente_uninominale: passa voti_uninominale alla funzione select_vincente_mattarellum, che determina il partito collegato al vincitore del collegio e il numero di seggi da scorporare. Restituisce un dataframe del tipo |PartitoCollegato|VotiVincenti| con una singola riga.
 
 

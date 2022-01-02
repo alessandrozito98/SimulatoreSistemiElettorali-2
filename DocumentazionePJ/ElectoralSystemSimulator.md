@@ -18,7 +18,7 @@ analyzed different real electoral systems in order to find patterns and differen
 ## Example systems
 
 In this repository have been implemented: the following systems:
-+ European electol system
++ European electoral system
 + Italian electoral system (Rosatellum)
 + Italian electoral system (Matarellum)
 + Chilean binomial system (applied on italian votes) 

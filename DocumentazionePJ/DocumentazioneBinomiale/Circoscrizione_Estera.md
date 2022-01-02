@@ -59,9 +59,9 @@ totals:
       Seggi: sum
 ```
 
-Il totals 'liste' ha questa configurazine :
+Il totals 'liste' ha questa configurazione:
 - è di tipo aggregazione
-- la sua input di dati è la funzione self.estero(vedere external per chiarimenti)
+- il suo input di dati è la funzione self.estero(vedere external per chiarimenti)
 - ritorna un dataframe con le colonne |Seggi|Coalizione|
 - aggrega i dati sulla chiave Coalizione
 - sui dati aggregati esegue l'operazione sum sul campo Seggi
@@ -95,7 +95,7 @@ totals_support:
           name: Commons.fill_coalizione
 ```
 
-Circoscrizione Estera avrà le seguenti funzioni totals_support chiambili:
+Circoscrizione Estera avrà le seguenti funzioni totals_support chiamabili:
 + estero: trasforma la funzione estero_coalizioni in un dataframe il cui valore di ritorno mi viene dato da calc_binomiale
 + estero_coalizioni: trasforma la funzione get_voti_estero in un dataframe il cui valore di ritorno mi viene dato da fill_coalizione
 
@@ -117,7 +117,7 @@ lane:
 
 L'entità Circoscrizione avrà un lane con nome 'lista' così configurata:
 - sarà di tipo 'only'
-- avrà distribuonzione 'binomiale'
+- avrà distribuzione 'binomiale'
 - il nome della lane è 'Estero'
 
 
@@ -142,7 +142,7 @@ lanes_propose:
 ```
 Circoscrizione Estera ha le seguenti lanes_propose, funzioni che generano una distribuzione |PolEnt|Seggi|:
 + binomiale:
-	-La dstribuzione generata avrà le colonne |Partito|Seggi| con i seggi assegnati nella circoscrizione.
+	-La distribuzione generata avrà le colonne |Partito|Seggi| con i seggi assegnati nella circoscrizione.
 	-Info avrà anche esso le colonne |Partito|Seggi|
 
 

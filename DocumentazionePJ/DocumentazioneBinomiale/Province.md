@@ -32,7 +32,7 @@ Cirscoscrizione ha il solo seguente attributo:
 	-Partito
 	-Voti
 	-Coalizione
-La tabella viene inizializzata tramite file [LeggiElettorali/Binomiale/Data/Circoscrizione_Estera/voti_province.csv]
+La tabella viene inizializzata tramite file [LeggiElettorali/Binomiale/Data/Province/voti_province.csv]
 
 
 ---

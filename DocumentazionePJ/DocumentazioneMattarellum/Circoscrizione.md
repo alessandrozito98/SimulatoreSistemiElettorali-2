@@ -30,7 +30,7 @@ external:
       - Voti
 ```
 
-Cirscoscrizione ha i seguenti attributi:
+Circoscrizione ha i seguenti attributi:
 + seggi_plurinominale: è il numero di seggi assegnati in quella circoscrizione nella quota proporzionale, viene inizializzato tramite il file di configurazione delle istanze
 + collegi: viene inizializzato tramite il file di configurazione delle istanze
 + voti_plurinominale: è la tabella dei voti della Circoscrizione, viene inizializzato tramite file /LeggiElettorali/Mattarellum/Data/Circoscrizione/voti_plurinominale.csv
@@ -91,7 +91,7 @@ totals_support:
                 name: self.get_voti_plurinominale
 ```
 
-Circoscrizione avrà le seguenti funzioni totals_support, chiambili tramite nome(...):
+Circoscrizione avrà le seguenti funzioni totals_support, chiamabili tramite nome(...):
 + get_risultati: chiama il totals aggrega_vincenti_collegi. Fatto ciò, passa questo risultato e voti_plurinominale alla funzione merge_votivincenti_mattarellum, che determina la cifra elettorale circoscrizionale dei partiti e restituisce un dataframe del tipo |Partito|Voti|Cifra| con i dati della circoscrizione.
 
 

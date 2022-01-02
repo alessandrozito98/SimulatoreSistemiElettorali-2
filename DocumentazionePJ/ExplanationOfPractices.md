@@ -1,6 +1,6 @@
 # Explanation of code
 This document will provide a brief overview of certain patterns that I have adopted in writing this
-softwar, so as to make reading and understanding the code easier
+software, to make reading and understanding the code easier
 
 ## deepCopy decorator
 
@@ -17,7 +17,7 @@ higher order functions in the program.
 
 Since python passes every argument by value in the case of a function which generates another
 function to be used later the risk is for some of these passed parameters to be changed after the
-function has been generated yet they would still influence the function (which by now is likely 
+function has been generated, yet they would still influence the function (which by now is likely 
 embedded in another object)
 
 At the same time for some of these parameters this referential nature is intended and necessary, as
@@ -38,7 +38,7 @@ def generating_function(*gargs, **gkwargs):
 ```
 
 **Motivation:**  
-This is the most basic form of code generation in python and I make use of this pattern inside of 
+This is the most basic form of code generation in python, and I make use of this pattern inside of 
 metaclasses to generate specific functions based on the parametrization provided by the 
 configuration file
 
@@ -64,7 +64,7 @@ This is the pattern used to make a function part of the class that is being crea
 Metaclass.
 
 **Explanation:**  
-Class creation in python is achieved throug calls to `type` or derived classes. In particular the
+Class creation in python is achieved through calls to `type` or derived classes. In particular the
 standard class creation:
 
 ```python

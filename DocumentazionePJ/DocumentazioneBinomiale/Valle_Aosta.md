@@ -1,7 +1,7 @@
 # Valle D'Aosta
 Il file Valle_Aosta.yaml è il file di configurazione dell'entità Valle D'Aosta.
 
-In questo file configureremo gli attributi che la Circoscrizione Estera deve avere, le sue lanes e la sue funzioni di filtraggio, aggregazione e trasformazione.
+In questo file configureremo gli attributi che la Valle D'Aosta deve avere, le sue lanes e la sue funzioni di filtraggio, aggregazione e trasformazione.
 
 ## Metaclasses
 
@@ -15,7 +15,7 @@ metaclasses:
 
 ---
 ## External
-ui definiamo quali parametri deve avere la Valle D'Aosta
+Qui definiamo quali parametri deve avere la Valle D'Aosta
 
 ```yaml
 external:
@@ -26,10 +26,10 @@ external:
 ```
 
 Valle D'Aosta ha il solo seguente attributo:
-+ voti_valle_d_aosta: è la tabella dei voti della Circoscrizione Estera, le cui colonne sono:
++ voti_valle_d_aosta: è la tabella dei voti della Valle D'Aosta, le cui colonne sono:
 	-Partito
 	-Voti
-La tabella viene inizializzata tramite file [LeggiElettorali/Binomiale/Data/Circoscrizione_Estera/voti_valle_d_aosta.csv]
+La tabella viene inizializzata tramite file [LeggiElettorali/Binomiale/Data/Valle_Aosta/voti_valle_d_aosta.csv]
 
 
 ---
@@ -57,7 +57,7 @@ totals:
 Il totals 'liste' ha questa configurazine :
 - è di tipo aggregazione
 - la sua input di dati è la funzione self.valle_d_aosta(vedere external per chiarimenti)
-- ritorna un dataframe con le colonne |Seggi|Coalizione|
+- ritorna un dataframe con le colonne | Seggi | Coalizione |
 - aggrega i dati sulla chiave Coalizione
 - sui dati aggregati esegue l'operazione sum sul campo Seggi
 
@@ -98,7 +98,7 @@ Province avrà le seguenti funzioni totals_support chiambili:
 
 ---
 ## Lane
-Qui definiamo quali lanes ha l'entità Circoscrizione Estera, la priorità di ogni lane, il sottolivello e quali operazioni aggiuntive deve fare.
+Qui definiamo quali lanes ha l'entità Valle D'Aosta, la priorità di ogni lane, il sottolivello e quali operazioni aggiuntive deve fare.
 
 ```yaml
 lane:
@@ -135,7 +135,7 @@ lanes_propose:
       - Seggi
 ```
 
-Circoscrizione Estera ha le seguenti lanes_propose, funzioni che generano una distribuzione |PolEnt|Seggi|:
+Valle D'Aosta ha le seguenti lanes_propose, funzioni che generano una distribuzione |PolEnt|Seggi|:
 + binomiale:
 	-La dstribuzione generata avrà le colonne |Partito|Seggi| con i seggi assegnati nella circoscrizione.
 	-Info avrà anche esso le colonne |Partito|Seggi|

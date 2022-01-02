@@ -149,7 +149,7 @@ Le informazioni in posizione 0 sono le informazioni
 
 --------------
 
-Esempio di info in rosatellum
+Esempio di info in Rosatellum
 
 Nazione:
 
@@ -167,7 +167,7 @@ Nazione:
 	+ modifica RestoListaCircoscrizioneUsato
 
 
-Circorscizione:
+Circoscrizione:
 
 + ideale:
 + collect:

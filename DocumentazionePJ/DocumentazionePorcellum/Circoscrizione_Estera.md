@@ -17,14 +17,14 @@ external:
   numero_seggi:
     init: True
 ```
-Abbiamo specificato il fatto che Circoscrizione_Estera ha gli attributi :
-- numero_seggi : che deve essere inizializzato
-- nome : che deve essere inizializzato
-- voti_estero : avendo il campo columns capiamo che questo attributo prende dei dati dal file con lo stesso nome della funzione, quindi [Data/Circoscrizione_Estera/voti_estero.csv]
+Abbiamo specificato il fatto che Circoscrizione_Estera ha gli attributi:
+- numero_seggi: che deve essere inizializzato
+- nome: che deve essere inizializzato
+- voti_estero: avendo il campo columns capiamo che questo attributo prende dei dati dal file con lo stesso nome della funzione, quindi [Data/Circoscrizione_Estera/voti_estero.csv]
 
 I valori che questi due parametri prenderanno possono essere trovati al file [Instances/Circoscrizione_Estera.yaml]
 
-Nello yaml ci riferiamo a questi attributi con la sintassi self.get_nomeAttributo :
+Nello yaml ci riferiamo a questi attributi con la sintassi self.get_nomeAttributo:
 
 ```yaml
 source:
@@ -43,7 +43,7 @@ lane:
     info_name: Circoscrizione_Estera
 ```
 
-L'entità Circoscrizione_Estera avrà un lane con nome 'estero' così configurata :
+L'entità Circoscrizione_Estera avrà un lane con nome 'estero' così configurata:
 - sarà di tipo tail
 - il nome della lane è Circoscrizione_Estera
 
@@ -68,7 +68,7 @@ lanes_propose:
       - Remainder
 ```
 
-La proposta 'liste' ha questa configurazine :
+La proposta 'liste' ha questa configurazine:
 - chiamerà la funzione estero (vedere totals_support per chiarimenti)
 - la distribuzione ritornata avrà le colonne Lista, Seggi (in questo ordine)
 - info avrà i campi Voti e Remainder
@@ -97,9 +97,9 @@ totals:
                 name: self.name
 ```
 
-Il totals 'liste' ha questa configurazine :
+Il totals 'liste' ha questa configurazione:
 - è di tipo transform
-- la sua input di dati è l'attributo self.voti_estero (vedere external per chiarimenti)
+- il suo input di dati è l'attributo self.voti_estero (vedere external per chiarimenti)
 - ritorna un dataframe con le colonne Partito, Coalizione, Voti
 - la trasformazione è su un dataframe
 - la funzione da chiamare è 'commons.fill_column' e le devono essere passati questi ulteriori parametri
@@ -108,7 +108,7 @@ Il totals 'liste' ha questa configurazine :
 
 ---
 ## Totals_Support
-Qui definiamo delle funzione totals di supporto sulle quali avviene anche il filtraggio dei dati.
+Qui definiamo delle funzioni totals di supporto sulle quali avviene anche il filtraggio dei dati.
 
 ```yaml
 totals_support:
@@ -131,7 +131,7 @@ totals_support:
                 name: self.get_numero_seggi
 ```
 
-Il totals_support 'estero' ha questa configurazione :
+Il totals_support 'estero' ha questa configurazione:
 - è di tipo trasformazione
 - il parametro 'data' della funzione che verrà chiamata avrà come sorgente l'attributo self.voti_estero (vedere external per chiarimenti)
 - la trasformazione è su un dataframe

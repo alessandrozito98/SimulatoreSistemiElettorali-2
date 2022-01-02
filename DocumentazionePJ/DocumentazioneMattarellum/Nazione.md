@@ -97,7 +97,7 @@ totals_support:
                 name: self.get_totale_seggi_plurinominale
 ```
 
-Nazione avrà le seguenti funzioni totals_support, chiambili tramite nome(...):
+Nazione avrà le seguenti funzioni totals_support, chiamabili tramite nome(...):
 + assegna_seggi_nazione: chiama il totals aggrega_risultati_circoscrizioni, applicandogli la soglia di sbarramento del 4%. Fatto ciò, passa questo risultato e totale_seggi_plurinominale alla funziona hare_mattarellum, che determina la distribuzione nazionale dei voti, che è un dataframe del tipo |Partito|Seggi|
 
 
