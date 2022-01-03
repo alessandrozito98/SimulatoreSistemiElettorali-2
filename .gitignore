@@ -133,3 +133,6 @@ logs
 
 # .xslx file
 *.xlsx
+
+# Junk files
+trash
