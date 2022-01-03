@@ -1,49 +1,49 @@
-# Obiettivo Lane
-La metaclasse Lanes.py è la parte centrale del sistema di distribuzione dei seggi.
+# Lane
 
-Essa infatti consente di avere delle suddivisione tra i seggi totale, in cui ciascuna di queste divisioni posso utilizzare una diversa meccanica di assegnazione dei propri seggi.
+## Introduzione 
+Una lane è il "direttore" di esecuzione per il sistema, verrà eseguita una sola lane per singolo tempo, una lane inizierà chiamando una funzione sulle istanze dell'inizio lane. Una volta che la funzione restituisce i risultati vengono raccolti in un set dall'hub e ripetuti fino all'effettivo eletto si ottengono risultati.
 
-Consente inoltre la creazioni di una gerarchia di livelli geografici, i quali possono prendere informazioni da eventuli livelli superiori, elaborarli e distribuire informazioni elaborate ai livelli inferiori.
-Il fondo di questa gerarchia è l'assegnazioni dei seggi all'entità politica di livello più basso, quindi Candidati, Partiti o Coalizioni.
+Ogni passaggio della lane deve anche essere in grado di mostrare quanti posti assegnerà, questo sarà impostato
+in coda alla lane per impostazione predefinita, ma potrebbe essere sfocato o essere assegnato dinamicamente a un livello superiore.
 
-======
+I livelli più alti possono affrontarlo sommando i livelli più bassi. Durante la configurazione dovrei considerare
+le seguenti opzioni, perché una lane può essere utilizzata per eleggere:
++ un numero fisso di candidati
++ fino ad un numero fisso di candidati
++ un numero di candidati determinato a tempo di esecuzione
++ fino a un numero determinato in fase di esecuzione
 
-## Funzionalità Lane
-Le lanes sono gli esecutore del sistema elettorale, questo significa che ogni lane presente inizia chiamando una funzione sulla lane head.
-Il risultato di questa funzione è salvato nell'Hub e si itera su questo dato fino all'ottenimento del risultato finale.
+I registri potrebbero anche essere passati per fornire ulteriori informazioni, ad esempio nella lane per
+rappresentanti plurinominali nel Rosatellum la Circoscrizione passerà un dizionario che per ogni Coalizione/Partito darà maggiori informazioni.
 
-Le lanes devono assegnare un certo numero di seggi, questo valore può essere deciso dai file di configurazione o può essere assegnato a run-time dai livelli superiori.
-
-======
-
-## Struttura Lanes
-Consentendo di rappresentare una gerarchia di livelli geografici, a loro volta le Lanes sono strutturare in modo gerarchico :
-    - Lane Head
-    - Lane Node
-    - Lane Tail
+Una lane comincia con un Lane Head, puo' contenere piu' nodi intermedi e termina necessariamente con un Lane Tail.
+Una lane puo' essere anche costituita da un solo nodo, in questo caso il nodo avra' come type `only`.
 
 
-### Lane Head
-La Lane Head è il più alto livello, è inoltre il primo che viene chiamato una volta eseguito il programma.
+### Lane head
+È qui che inizia la lane, la creazione della classe la registrerà con l'Hub.
 
-Questa Lane offre una funzione per la creazione della prima proposta di distribuzione dei seggi, la quale verrà poi mandata ai livelli inferiori.
-Oltre alla creazione della proposta, può anche applicare correzioni e modifiche alle distribuzioni dei livelli inferiori.
+Offrirà una funzione che, quando chiamata, restituirà un **insieme** di candidati che hanno ricevuto un'offerta iniziale per un posto.
+
+Creerà la prima proposta senza alcun input esterno e quindi correggerà le opzioni di livello inferiore.
+
+Infine passerà ad ogni istanza di livello inferiore le direttive che deve seguire e attenderà la restituzione. Il `return` sarà un elenco di insiemi che devono essere uniti.
 
 ### Lane Node
-Questa Lane ha le stesse funzionalità della Lane Head, la sua funzione per la proposta della distribuzione è possibile chiamarla dai livelli superiori.
+Un nodo di una lane si comporta come capo lane ad eccezione della funzione di proposta trasparente che verrà chiamata dal livello superiore, e per una funzione che si comporterà come start_lane, ma accettando una distribuzione come
+un argomento.
 
-### Lane Tail
-La Lain Tail è, invece, il più basso livello gerarchico, questo significa che non dovrà inoltrare la sua proposta di distribuzione a dei livelli inferiori, piuttosto dovrà eleggere i Candidati/Partiti/Coalizioni usando le informazioni ricevute.
+### Lane tail
+Questo si comporta come nodo di lane tranne per il fatto che invece di chiamare un sottolivello utilizza la distribuzione. Utilizza le informazioni che ha ricevuto per eleggere i candidati, questo avverrà prendendo la finale
+dataframe ottenuto (che avrà colonne: ["PolEnt", "Posti da assegnare"]) e sulla prima colonna di ogni riga chiamando la funzione fornita dalla metaclasse dell'elettore
 
-### Lane Unica
-Questa Lane si isola dalla gerarchia perchè non inoltra o riceve informazioni da altri livelli.
-Infatti essa usa direttamente le informazioni per generare una distribuzione e assegnare i seggi.
+### Lane only
+Questo è utile per i sistemi che non si basano su livelli superiori per decidere la rappresentazione, questi sono
+sistemi come FPTF, multi-distretti proporzionali ecc.
 
-Può essere vista come una Lane Head e una Lane Tail convergenti in un unico nodo.
+È concettualmente uguale a una lane avente la stessa classe di Lane-head e Lane-tail.
 
-======
-
-# Schema Lanes
+## Schema Lanes
 La metaclasse Lanes.py mette a disposizione due funzioni:
     - *exec_lane* : la quale da inizio all'esecuzione della lane
     - *propose* : la quale usando le informazioni passategli genera e restituisce una proposta di distribuzione
@@ -81,7 +81,6 @@ Viene restituita una lista di tuple contenenti :
 
 ## Lane propose
 
-MODIFICARE
 **Funzione ad alto livello**:  
 Similmente a totals queste funzioni vengono differenziate dal primo parametro 
 posizionale  fornito alla chiamata
@@ -98,14 +97,12 @@ i valori restituiti sono:
 + una distribuzione (dataframe con due colonne, la prima contente nomi di 
 PolEnt, la seconda numeri convertibili a interi)
 + Un dizionario contenente informazioni
-FINE MODIFICARE
 
 =====
 
 # Configurazione Lanes
 
-## Keyword nei File .yaml
-lane
+** Keyword nei File .yaml:** `lane`
 
 ## Schema nei File .yaml
 La struttura della Lane viene espressa usando un dizionario dove le chiavi sono il nome della lane e i valori sono dizionari contenenti le specifiche della lane
@@ -163,31 +160,25 @@ lanes_propose
 ## Schema nei File .yaml
 La struttura della Lane Propose viene espressa usando un dizionario dove le chiavi sono il nome della lanes_propose e i valori sono dizionari contenenti le specifiche della lanes_propose
 
-*Contenuti dei Dizionari delle Specifiche* :
+*Contenuti dei Dizionari delle Specifiche*:
 
-    - source : contiene una funzione (definita tramite source) che viene chiamata per fornire il punto di partenza all'estrazione di informazioni e della distribuzione. Questa funzione può essere definita in qualunque modo ma deve:
-        1. Accettare i parametri a kw: information, constraint, distribution
-        2. Restituire un dataframe
+- source : contiene una funzione (definita tramite source) che viene chiamata per fornire il punto di partenza all'estrazione di informazioni e della distribuzione. Questa funzione può essere definita in qualunque modo ma deve:
+    1. Accettare i parametri a kw: information, constraint, distribution
+    2. Restituire un dataframe
 
-    - distribution : definisce come ricavare una distribuzione dal dataframe che source restituisce. Può essere:
-        - una lista di due stringhe, entrambe colonne del dataframe. In questo caso la prima rappresenta la PolEnt che riceverà i seggi e la seconda i seggi assegnati
-        - un dizionario
+ - distribution : definisce come ricavare una distribuzione dal dataframe che source restituisce. Può essere:
+    - una lista di due stringhe, entrambe colonne del dataframe. In questo caso la prima rappresenta la PolEnt che riceverà i seggi e la seconda i seggi assegnati
+    - un dizionario
 
-        Schema del dizionario di `distribution`:
-            - key : la colonna cui associare i seggi
-            - selector : viene riconosciuto da `parse_row_selector_take` o `parse_row_selector_value`
-            - seats: può essere
-                - un intero, in tal caso tutti i candidati validi riceveranno lo stesso numero di seggi
-                - stringa, ogni candidato riceverà il numero di seggi associato alla colonna
+    Schema del dizionario di `distribution`:
+    - key : la colonna cui associare i seggi
+    - selector : viene riconosciuto da `parse_row_selector_take` o `parse_row_selector_value`
+    - seats: può essere
+        - un intero, in tal caso tutti i candidati validi riceveranno lo stesso numero di seggi
+         - stringa, ogni candidato riceverà il numero di seggi associato alla colonna
 
-    - info_key (opzionale): se vuoto la chiave delle info è la stessa della chiave della distribuzione, altrimenti indica la PolEnt cui associare le informazioni
+- info_key (opzionale): se vuoto la chiave delle info è la stessa della chiave della distribuzione, altrimenti indica la PolEnt cui associare le informazioni
 
-    - info: una lista di stringhe rappresentanti le colonne del dataframe contenenti informazioni
+- info: una lista di stringhe rappresentanti le colonne del dataframe contenenti informazioni
 
 Restituisce un dataframe con colonne: \[key, "Seats"\]
-
- 
-
-
-
-
