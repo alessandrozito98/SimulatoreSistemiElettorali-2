@@ -2,7 +2,6 @@ pyyaml
 pandas
 numpy
 matplotlib
-os-sys
 importlib
 argparse
 requires.io

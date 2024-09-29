@@ -38,6 +38,6 @@ if __name__ == '__main__':
     sys.stdout = save_stdout
     f.close()
 
-    print(res)
+    #print(res)
 
 
