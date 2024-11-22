@@ -315,7 +315,7 @@ def calcola_coordinate_parlamento(df, angle_total=180, rows=10, ratio=6, initial
     return df
 
 
-def show_rosatellum_chart1(final_result):
+def show_rosatellum_chart(final_result):
     """
     Genera e visualizza un grafico parlamentare e un grafico a torta per i seggi dei partiti.
 
@@ -455,7 +455,7 @@ def show_rosatellum_chart1(final_result):
     plt.close()
 
 
-def show_rosatellum_chart(final_result):
+def show_rosatellum_chart1(final_result):
     '''
     Produce un output visuale dei risultati finali della simulazione, nello specifico un pie chart.
 
