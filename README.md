@@ -61,6 +61,8 @@ for more information on which files to put in the folder, see the [documentation
 + Binomiale Electoral law: 
     + Alessandro Zito ([@alessandrozito98](https://github.com/alessandrozito98))
     + Mirko Li Veli ([@mirkoliveli](https://github.com/mirkoliveli))
++ Rosatellum Electoral law:
+  + Furkan Gumus ([@FurkanGumus](https://github.com/gfurkan00)
 
 
 ### Contributing
