@@ -1,0 +1,53 @@
+# Configura il livello dei collegi uninominali, come suddivisione più specifica
+metaclasses:
+  - external
+  - totals
+  - lanes
+
+external:
+  voti_uninominale:           # Dati dei voti uninominali
+    columns:
+      - Candidato
+      - Coalizione
+      - Lista
+      - Partito
+      - Voti
+
+##########################################LANES########################################################################
+
+lanes_propose:
+  seggi_collegiali:
+    source:
+      type: fun
+      name: self.get_voti_uninominale
+
+    distribution:
+      key: Partito  # Distribuisce seggi in base al partito vincente
+      seats: 1      # Numero di seggi per collegio
+      selector:
+              column: Voti
+              order: decreasing  # Ordina per numero di voti in ordine decrescente
+              take: 1            # Prende il partito con più voti
+    info:
+      - Voti
+
+lane:
+  uninominale:
+    node_type: only           # Indica un solo nodo per l'assegnazione
+    order_number: 1           # Ordine della lane
+    distribution: seggi_collegiali
+    info_name: Collegio       # Definisce il contesto come "Collegio"
+
+
+#############################################TOTALS####################################################################
+totals_support:
+  get_vincente_uninominale:    # Seleziona il vincitore a livello di collegio
+    source:
+      type: fun
+      name: self.get_voti_uninominale  # Recupera i voti per il collegio
+    type: transform
+    ops:
+      - type: dataframe
+        source:
+          type: fun
+          name: Commons.seleziona_vincitore_collegio  # Funzione per selezionare il vincitore nel collegio

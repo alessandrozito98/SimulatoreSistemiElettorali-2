@@ -1,0 +1,253 @@
+ABRUZZO:
+  collegi:
+    - '01 - CHIETI'
+    - '02 - PESCARA'
+    - "03 - L'AQUILA"
+  seggi_plurinominale: 6
+
+BASILICATA:
+  collegi:
+    - '01 - POTENZA'
+  seggi_plurinominale: 3
+
+CALABRIA:
+  collegi:
+    - '01 - CORIGLIANO-ROSSANO'
+    - '02 - COSENZA'
+    - '03 - CATANZARO'
+    - '04 - VIBO VALENTIA'
+    - '05 - REGGIO DI CALABRIA'
+  seggi_plurinominale: 8
+
+CAMPANIA 1:
+  collegi:
+    - '01 - GIUGLIANO IN CAMPANIA'
+    - '02 - NAPOLI'
+    - '03 - NAPOLI'
+    - '04 - CASORIA'
+    - '05 - ACERRA'
+    - '06 - SOMMA VESUVIANA'
+    - '07 - TORRE DEL GRECO'
+  seggi_plurinominale: 13
+
+CAMPANIA 2:
+  collegi:
+    - '01 - AVERSA'
+    - '02 - CASERTA'
+    - '03 - BENEVENTO'
+    - '04 - AVELLINO'
+    - '05 - SCAFATI'
+    - '06 - SALERNO'
+    - '07 - EBOLI'
+  seggi_plurinominale: 11
+
+EMILIA-ROMAGNA:
+  collegi:
+    - '01 - PIACENZA'
+    - '02 - PARMA'
+    - "03 - REGGIO NELL'EMILIA"
+    - '04 - MODENA'
+    - '05 - IMOLA'
+    - '06 - BOLOGNA'
+    - '07 - CARPI'
+    - '08 - RAVENNA'
+    - '09 - FERRARA'
+    - "10 - FORLI'"
+    - '11 - RIMINI'
+  seggi_plurinominale: 18
+
+FRIULI-VENEZIA GIULIA:
+  collegi:
+    - '01 - PORDENONE'
+    - '02 - UDINE'
+    - '03 - TRIESTE'
+  seggi_plurinominale: 5
+
+LAZIO 1:
+  collegi:
+    - '01 - ROMA'
+    - '02 - ROMA'
+    - '03 - ROMA'
+    - '04 - ROMA'
+    - '05 - ROMA'
+    - '06 - ROMA'
+    - '07 - ROMA'
+    - '08 - VELLETRI'
+    - '09 - GUIDONIA MONTECELIO'
+  seggi_plurinominale: 15
+
+LAZIO 2:
+  collegi:
+    - '01 - VITERBO'
+    - '02 - RIETI'
+    - '03 - LATINA'
+    - '04 - FROSINONE'
+    - '05 - TERRACINA'
+  seggi_plurinominale: 7
+
+LIGURIA:
+  collegi:
+    - '01 - SAVONA'
+    - '02 - GENOVA'
+    - '03 - GENOVA'
+    - '04 - LA SPEZIA'
+  seggi_plurinominale: 6
+
+LOMBARDIA 1:
+  collegi:
+    - '01 - MONZA'
+    - '02 - SEREGNO'
+    - '03 - COLOGNO MONZESE'
+    - '04 - ROZZANO'
+    - '05 - LEGNANO'
+    - '06 - SESTO SAN GIOVANNI'
+    - '07 - MILANO'
+    - '08 - MILANO'
+    - '09 - MILANO'
+  seggi_plurinominale: 16
+
+LOMBARDIA 2:
+  collegi:
+    - '01 - VARESE'
+    - '02 - BUSTO ARSIZIO'
+    - '03 - COMO'
+    - '04 - SONDRIO'
+    - '05 - LECCO'
+  seggi_plurinominale: 9
+
+LOMBARDIA 3:
+  collegi:
+    - '01 - TREVIGLIO'
+    - '02 - BERGAMO'
+    - '03 - LUMEZZANE'
+    - '04 - BRESCIA'
+    - '05 - DESENZANO DEL GARDA'
+  seggi_plurinominale: 9
+
+LOMBARDIA 4:
+  collegi:
+    - '01 - PAVIA'
+    - '02 - LODI'
+    - '03 - CREMONA'
+    - '04 - MANTOVA'
+  seggi_plurinominale: 7
+
+MARCHE:
+  collegi:
+    - '01 - ASCOLI PICENO'
+    - '02 - MACERATA'
+    - '03 - ANCONA'
+    - '04 - PESARO'
+  seggi_plurinominale: 6
+
+MOLISE:
+  collegi:
+    - '01 - CAMPOBASSO'
+  seggi_plurinominale: 1
+
+PIEMONTE 1:
+  collegi:
+    - '01 - TORINO'
+    - '02 - TORINO'
+    - '03 - COLLEGNO'
+    - '04 - CHIERI'
+    - '05 - MONCALIERI'
+  seggi_plurinominale: 10
+
+PIEMONTE 2:
+  collegi:
+    - '01 - ALESSANDRIA'
+    - '02 - NOVARA'
+    - '03 - VERCELLI'
+    - '04 - ASTI'
+    - '05 - CUNEO'
+  seggi_plurinominale: 9
+
+PUGLIA:
+  collegi:
+    - '01 - FOGGIA'
+    - '02 - CERIGNOLA'
+    - '03 - ANDRIA'
+    - '04 - MOLFETTA'
+    - '05 - BARI'
+    - '06 - ALTAMURA'
+    - '07 - BRINDISI'
+    - '08 - TARANTO'
+    - '09 - LECCE'
+    - '10 - GALATINA'
+  seggi_plurinominale: 17
+
+SARDEGNA:
+  collegi:
+    - '01 - CAGLIARI'
+    - '02 - CARBONIA'
+    - '03 - NUORO'
+    - '04 - SASSARI'
+  seggi_plurinominale: 7
+
+SICILIA 1:
+  collegi:
+    - '01 - PALERMO'
+    - '02 - PALERMO'
+    - '03 - BAGHERIA'
+    - '04 - GELA'
+    - '05 - AGRIGENTO'
+    - '06 - MARSALA'
+  seggi_plurinominale: 9
+
+SICILIA 2:
+  collegi:
+    - '01 - RAGUSA'
+    - '02 - CATANIA'
+    - '03 - ACIREALE'
+    - '04 - SIRACUSA'
+    - '05 - BARCELLONA POZZO DI GOTTO'
+    - '06 - MESSINA'
+  seggi_plurinominale: 11
+
+TOSCANA:
+  collegi:
+    - '01 - GROSSETO'
+    - '02 - MASSA'
+    - '03 - LUCCA'
+    - '04 - PISA'
+    - '05 - LIVORNO'
+    - '06 - PRATO'
+    - '07 - FIRENZE'
+    - '08 - SCANDICCI'
+    - '09 - AREZZO'
+  seggi_plurinominale: 15
+
+TRENTINO-ALTO ADIGE/SUDTIROL:
+  collegi:
+    - '01 - TRENTO'
+    - '02 - ROVERETO'
+    - '03 - BOLZANO/BOZEN'
+    - '04 - BRESSANONE/BRIXEN'
+  seggi_plurinominale: 3
+
+UMBRIA:
+  collegi:
+    - '01 - TERNI'
+    - '02 - PERUGIA'
+  seggi_plurinominale: 4
+
+VENETO 1:
+  collegi:
+    - '01 - VENEZIA'
+    - '02 - CHIOGGIA'
+    - '03 - TREVISO'
+    - '04 - CASTELFRANCO VENETO'
+    - '05 - BELLUNO'
+  seggi_plurinominale: 8
+
+VENETO 2:
+  collegi:
+    - '01 - ROVIGO'
+    - '02 - SELVAZZANO DENTRO'
+    - '03 - PADOVA'
+    - '04 - BASSANO DEL GRAPPA'
+    - '05 - VICENZA'
+    - '06 - VERONA'
+    - '07 - VILLAFRANCA DI VERONA'
+  seggi_plurinominale: 12

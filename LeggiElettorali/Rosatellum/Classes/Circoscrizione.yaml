@@ -1,0 +1,88 @@
+# File di configurazione per ciascuna circoscrizione, rappresentante una suddivisione di livello inferiore rispetto alla nazione
+metaclasses:
+  - external
+  - superdivision
+  - totals
+  - lanes
+
+external:
+  seggi_plurinominale:
+    init: True               # Totale dei seggi plurinominali per la circoscrizione
+  collegi:
+    init: True               # Specifica i collegi inclusi nella circoscrizione
+  voti_plurinominale:
+    columns:
+      - Partito
+      - Coalizione
+      - Voti
+
+subdivisions:
+  collegi:
+    type: Collegio           # Definisce una suddivisione di livello ancora più basso (Collegio)
+    functions:
+      - name: get_vincente_uninominale
+        source:
+          type: fun
+          name: self.get_vincente_uninominale  # Funzione per ottenere il vincitore del collegio uninominale definita nella classe collegio
+
+
+##########################################LANES#######################################################################
+lanes_propose:
+  seggi_circoscrizionali:
+    source:
+      type: fun
+      name: Commons.distribuzione_seggi_circoscrizionali
+      kwargs:
+        district_votes:
+          source:
+            type: fun
+            name: self.get_risultati  # Funzione per calcolare voti e cifre a livello di circoscrizione
+        seggi_circoscrizione:
+          source:
+            type: fun
+            name: self.get_seggi_plurinominale  # Numero totale di seggi proporzionali per circoscrizione
+    distribution:
+      - Partito
+      - Seggi
+    info:
+      - Coalizione
+      - Resto
+      - SeggiCircoscrizione
+
+lane:
+  plurinominale:
+    node_type: tail
+    info_name: Circoscrizione   # Specifica la circoscrizione come contesto per questa lane
+
+
+#############################################TOTALS####################################################################
+totals:
+  # Aggrega i voti vincenti dei collegi, livello circoscrizionale
+  aggrega_vincenti_collegi:
+    type: aggregate
+    source:
+      type: fun
+      name: self.subs_collegi_get_vincente_uninominale  # Chiama i risultati vincenti per collegio
+    keys:
+      - Partito
+      - Coalizione
+    ops:
+      VotiVincenti: sum     # Somma i voti vincenti per ogni Partito
+
+totals_support:
+  # Ottiene i risultati combinati per la circoscrizione, escludendo Valle d’Aosta
+  get_risultati:
+    source:
+      totals: aggrega_vincenti_collegi
+    type: transform
+    ops:
+      - type: dataframe
+        source:
+          type: fun
+          name: Commons.unisci_voti_maggioritario_proporzionale
+          kwargs:
+            voti_proporzionale:
+              source:
+                type: fun
+                name: self.get_voti_plurinominale  # Usa i voti plurinominali
+
