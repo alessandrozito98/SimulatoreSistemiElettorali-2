@@ -8,3 +8,4 @@ requires.io
 inspect.it
 plotly
 multiprocess
+kaleido
