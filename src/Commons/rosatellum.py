@@ -5,7 +5,6 @@ locale utilizzando i metodi Hare e D'Hondt.
 '''
 import warnings
 from contextlib import nullcontext
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -24,19 +23,21 @@ pd.set_option('future.no_silent_downcasting', True)
 
 
 # Configurazione del logger per rosatellum
-rosatellum_logger = logging.getLogger('rosatellum_logger')
-rosatellum_logger.setLevel(logging.DEBUG)
+rosatellum_results = logging.getLogger('rosatellum_results')
+rosatellum_results.setLevel(logging.DEBUG)
 
 # Creazione di un handler per scrivere su file
-file_handler = logging.FileHandler('Rosatellum_Logs')
+file_handler = logging.FileHandler('Rosatellum_Results')
 file_handler.setLevel(logging.DEBUG)
+
+
 
 # Formattazione opzionale del log
 formatter = logging.Formatter('%(message)s \n\n')
 file_handler.setFormatter(formatter)
 # Aggiunta dell'handler al logger
-rosatellum_logger.addHandler(file_handler)
-rosatellum_logger.propagate = False
+rosatellum_results.addHandler(file_handler)
+rosatellum_results.propagate = False
 
 
 #1
@@ -56,7 +57,6 @@ def seleziona_vincitore_collegio(*a, data, **kwargs):
     """
     # Ordina i candidati in base ai voti in ordine decrescente per trovare il vincitore
     data.sort_values('Voti', ascending=False, inplace=True, ignore_index=True)
-    rosatellum_logger.info(f"Voti ordinati nel collegio:\n{data}")
 
     # Inizializza il DataFrame risultato con la struttura dei dati di output
     risultato = pd.DataFrame(columns=['Partito','Coalizione', 'VotiVincenti'])
@@ -68,7 +68,6 @@ def seleziona_vincitore_collegio(*a, data, **kwargs):
         'VotiVincenti': data.at[0, 'Voti']
     }])
     risultato = pd.concat([risultato, nuova_riga], ignore_index=True)
-    rosatellum_logger.info(f"Vincitore selezionato:\n{risultato}")
     return risultato
 
 #2
@@ -89,11 +88,8 @@ def unisci_voti_maggioritario_proporzionale(data, voti_proporzionale):
         DataFrame unito con le colonne 'Partito', 'Voti', e 'Cifra'.
     """
 
-    # print("datarosa",data)
-    # print("votirosa",voti_proporzionale)
     # Copia il DataFrame originale
     res = data.copy()
-
     # Unisce i voti proporzionali e maggioritari usando 'Partito' come chiave
     res = pd.merge(voti_proporzionale,res[['Partito']], on='Partito', how='outer')
     # Riempie i valori nulli e converte oggetti
@@ -102,8 +98,6 @@ def unisci_voti_maggioritario_proporzionale(data, voti_proporzionale):
     # Converti in interi e calcola 'Cifra' come totale dei voti
     res['Voti'] = res['Voti'].astype(int)
     res['Cifra'] = res['Voti']
-    rosatellum_logger.info(f"Unione dei voti uninominali e plurinominali:\n{res[['Partito', 'Coalizione', 'Voti', 'Cifra']]}")
-    print("resrosa",res)
     return res[['Partito','Coalizione', 'Voti', 'Cifra']]
 
 #3
@@ -131,7 +125,6 @@ def distribuzione_seggi_circoscrizionali(*, information, distribution, district_
     district_votes.set_index('Partito', inplace=True)
     somma_cifre = district_votes['Cifra'].sum()
     q = somma_cifre / seggi_circoscrizione  # Divisore basato su somma delle cifre e seggi disponibili
-    rosatellum_logger.info(f"Quoziente di distribuzione (Hare) per la circoscrizione: {q}")
     res = []
     for _, r in distribution.iterrows():
         cifra = district_votes.at[r['Partito'], 'Cifra']
@@ -166,17 +159,14 @@ def distribuzione_hare_nazionale(data, seggi_totali):
         DataFrame con 'Partito', 'Coalizione', 'Voti', 'Cifra', 'Seggi', e 'Resto' per ciascun partito.
     """
     res = data.copy()
-    rosatellum_logger.info(res)
     # Calcola il quoziente Hare
     quoziente_hare = res['Voti'].sum() / seggi_totali
-    rosatellum_logger.info(f"Quoziente Hare nazionale: {quoziente_hare}")
 
     # Assegna i seggi interi a ciascun partito dividendo per il quoziente Hare
     res['Seggi'] = (res['Cifra'] / quoziente_hare).astype(int)
 
     # Calcola il resto per ciascun partito
     res['Resto'] = res['Cifra'] - (res['Seggi'] * quoziente_hare)
-    rosatellum_logger.info(f"Seggi assegnati (prima della distribuzione dei resti):\n{res[['Partito', 'Seggi', 'Resto']]}")
 
     # Calcola i seggi rimanenti
     seggi_assegnati = res['Seggi'].sum()
@@ -189,7 +179,6 @@ def distribuzione_hare_nazionale(data, seggi_totali):
 
     # Riordina e seleziona le colonne richieste
     res = res.sort_index()
-    rosatellum_logger.info(f"Distribuzione finale dei seggi nazionali:\n{res[['Partito', 'Seggi']]}")
     return res[['Partito', 'Coalizione', 'Voti', 'Cifra', 'Seggi', 'Resto']]
 
 #5
@@ -326,7 +315,6 @@ def show_rosatellum_chart(final_result):
     """
     # Creazione del DataFrame per i dati
     dati = [(partito, tipo) for circoscrizione, tipo, partito, seggi in final_result for _ in range(seggi)]
-    #rosatellum_logger.info("dati",dati)
     df = pd.DataFrame(dati, columns=["PARTITO", "TIPO"])
 
     # Mappatura delle coalizioni
@@ -464,7 +452,6 @@ def show_rosatellum_chart1(final_result):
     final_result: lista di tuple del tipo (distretto, lane, partito, seggi_assegnati)
     '''
 
-    rosatellum_logger.info(f"Dati per la visualizzazione:\n{final_result}")
     # Ottengo dizionario del tipo partito: seggi_assegnati_totali
     seats_dict = {}
     for c, l, p, s in final_result:
@@ -472,14 +459,12 @@ def show_rosatellum_chart1(final_result):
             seats_dict[p] += s
         else:
             seats_dict[p] = s
-    #rosatellum_logger.info(seats_dict)
     # Trasformo il dizionario in una lista di tuple ordinate per seggi decrescente
     part_seats = [(p, s) for p, s in seats_dict.items()]
     part_seats.sort(key=lambda e: e[1], reverse=True)
 
     # Output leggibile dei risultati finali
-    rosatellum_logger.info(part_seats)
-
+    print(part_seats)
     # Ottengo la lista dei partiti
     labels_list = [p for p, s in part_seats]
     labels = (*labels_list,)

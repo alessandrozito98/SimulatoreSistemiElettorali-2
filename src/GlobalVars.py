@@ -83,7 +83,6 @@ class ActHub:
             else: 
                 for district, name_lista, elector, seats in ret:
                      exec_return.append((district.name, name_lista, elector, seats))
-                
         return exec_return
 
     def get_elected(self, lane=None, polEnt=None):
