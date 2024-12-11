@@ -16,12 +16,12 @@ import logging
 # Ignora specifici avvisi di pandas per evitare rumore nel log
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=UserWarning)
-warnings.simplefilter(action='ignore', category=PerformanceWarning)
+"""warnings.simplefilter(action='ignore', category=PerformanceWarning)"""
 
 # Impostazione di pandas per la gestione dei downcasting futuri
 pd.set_option('future.no_silent_downcasting', True)
 
-
+"""
 # Configurazione del logger per rosatellum
 rosatellum_results = logging.getLogger('rosatellum_results')
 rosatellum_results.setLevel(logging.DEBUG)
@@ -38,7 +38,7 @@ file_handler.setFormatter(formatter)
 # Aggiunta dell'handler al logger
 rosatellum_results.addHandler(file_handler)
 rosatellum_results.propagate = False
-
+"""
 
 #1
 def seleziona_vincitore_collegio(*a, data, **kwargs):

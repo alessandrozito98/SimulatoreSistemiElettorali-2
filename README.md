@@ -20,6 +20,22 @@ Simulations of different electoral laws with the same dataset to see if there wo
 
 Needs python3.
 
+Create a virtual environment:
+
+```bash
+python3 -m venv venv
+```
+
+Activate the virtual environment:
+
+On Linux/macOS:
+```bash
+source venv/bin/activate
+```
+On Windows:
+```bash
+venv\Scripts\activate
+```
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all the librabries.
 
 ```bash
@@ -35,14 +51,14 @@ Two ways of starting the simulation:
 1) Using the bash console:
 
 ```bash
-python3 -m src LeggiElettorali/LawName
+python3 -m src LeggiElettorali/Rosatellum
 ``` 
 
 2) Using the python console:
 
 ```python
 import src
-src.run_simulation('LeggiElettorali/LawName')
+src.run_simulation('LeggiElettorali/Rosastellum')
  ```
 
 ### Setup
