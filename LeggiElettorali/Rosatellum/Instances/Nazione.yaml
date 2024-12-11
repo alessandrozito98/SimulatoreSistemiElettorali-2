@@ -1,0 +1,43 @@
+ITALIA:
+  circoscrizioni:
+    - 'ABRUZZO'
+    - 'BASILICATA'
+    - 'CALABRIA'
+    - 'CAMPANIA 1'
+    - 'CAMPANIA 2'
+    - 'EMILIA-ROMAGNA'
+    - 'FRIULI-VENEZIA GIULIA'
+    - 'LAZIO 1'
+    - 'LAZIO 2'
+    - 'LIGURIA'
+    - 'LOMBARDIA 1'
+    - 'LOMBARDIA 2'
+    - 'LOMBARDIA 3'
+    - 'LOMBARDIA 4'
+    - 'MARCHE'
+    - 'MOLISE'
+    - 'PIEMONTE 1'
+    - 'PIEMONTE 2'
+    - 'PUGLIA'
+    - 'SARDEGNA'
+    - 'SICILIA 1'
+    - 'SICILIA 2'
+    - 'TOSCANA'
+    - 'TRENTINO-ALTO ADIGE/SUDTIROL'
+    - 'UMBRIA'
+    - 'VENETO 1'
+    - 'VENETO 2'
+  totale_seggi_plurinominale: 245
+  coalizioni:
+      CDX:
+        partiti:
+          - "FRATELLI D'ITALIA CON GIORGIA MELONI"
+          - "LEGA PER SALVINI PREMIER"
+          - "FORZA ITALIA"
+          - "NOI MODERATI/LUPI - TOTI - BRUGNARO - UDC"
+      CSX:
+        partiti:
+          - "PARTITO DEMOCRATICO - ITALIA DEMOCRATICA E PROGRESSISTA"
+          - "ALLEANZA VERDI E SINISTRA"
+          - "+EUROPA"
+          - "IMPEGNO CIVICO LUIGI DI MAIO - CENTRO DEMOCRATICO"

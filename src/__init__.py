@@ -83,6 +83,8 @@ def run_simulation(path):
      # run_exec fa partire l'esecuzione 
     final_result = src.GlobalVars.Hub.run_exec() # 5
 
+    if 'Rosatellum' in path:
+        Commons.show_rosatellum_chart(final_result) #visualizzaione grafica da porcellum.py
     if 'Porcellum' in path:
         Commons.printing_visuals(final_result) #visualizzaione grafica da porcellum.py
     if 'Mattarellum' in path:

@@ -2,10 +2,10 @@ pyyaml
 pandas
 numpy
 matplotlib
-os-sys
 importlib
 argparse
 requires.io
 inspect.it
 plotly
 multiprocess
+kaleido

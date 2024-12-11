@@ -20,6 +20,22 @@ Simulations of different electoral laws with the same dataset to see if there wo
 
 Needs python3.
 
+Create a virtual environment:
+
+```bash
+python3 -m venv venv
+```
+
+Activate the virtual environment:
+
+On Linux/macOS:
+```bash
+source venv/bin/activate
+```
+On Windows:
+```bash
+venv\Scripts\activate
+```
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all the librabries.
 
 ```bash
@@ -35,14 +51,14 @@ Two ways of starting the simulation:
 1) Using the bash console:
 
 ```bash
-python3 -m src LeggiElettorali/LawName
+python3 -m src LeggiElettorali/Rosatellum
 ``` 
 
 2) Using the python console:
 
 ```python
 import src
-src.run_simulation('LeggiElettorali/LawName')
+src.run_simulation('LeggiElettorali/Rosastellum')
  ```
 
 ### Setup
@@ -61,6 +77,8 @@ for more information on which files to put in the folder, see the [documentation
 + Binomiale Electoral law: 
     + Alessandro Zito ([@alessandrozito98](https://github.com/alessandrozito98))
     + Mirko Li Veli ([@mirkoliveli](https://github.com/mirkoliveli))
++ Rosatellum Electoral law:
+  + Furkan Gumus ([@FurkanGumus](https://github.com/gfurkan00))
 
 
 ### Contributing

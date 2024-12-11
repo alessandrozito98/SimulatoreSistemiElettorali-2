@@ -1,0 +1,88 @@
+# Definizione delle metaclassi di configurazione del livello nazionale.
+metaclasses:
+  - external        # Per variabili esterne
+  - superdivision   # Per la suddivisione gerarchica in circoscrizioni
+  - totals          # Per la gestione delle aggregazioni nazionali dei voti
+  - lanes           # Per la gestione delle distribuzioni di seggi a livello nazionale
+
+external:
+  totale_seggi_plurinominale:  # Numero totale di seggi proporzionali
+    init: True
+    type: int
+  circoscrizioni:              # Elenco delle circoscrizioni elettorali
+    init: True
+
+subdivisions:
+  circoscrizioni:
+    type: Circoscrizione       # La classe 'Circoscrizione' gestisce le operazioni di livello circoscrizionale
+    functions:
+      - name: get_risultati
+        source:
+          type: fun
+          name: self.get_risultati  # Ottiene i risultati per ogni circoscrizione (necessario per l'aggregazione)
+
+
+##########################################LANES#######################################################################
+lanes_propose:
+  seggi_nazionali:
+    source:
+      type: fun
+      name: self.assegna_seggi_nazione  # Funzione specifica per l'assegnazione proporzionale nazionale
+
+    distribution:
+      - Partito
+      - Seggi
+      - Coalizione
+    info:
+      - Voti  # Aggiunge informazioni di voto per il contesto di partito e seggi
+
+lane:
+  plurinominale:
+    node_type: head
+    order_number: 2         # Ordina la lane nella sequenza nazionale
+    sub_level: Circoscrizione  # Specifica che la suddivisione è per circoscrizione
+    info_name: Nazione       # Nome informativo della lane per il contesto nazionale
+    first_input: seggi_nazionali  # Input iniziale per la distribuzione proporzionale
+
+    operations:
+      - collect_type: seggi_circoscrizionali
+        ideal_distribution: $   # Distribuzione ideale basata su proporzioni ( ultima distribuzione valida)
+        corrector: Commons.correggi_distribuzione_locale  # Funzione di correzione dal modulo Commons
+
+
+#############################################TOTALS####################################################################
+totals:
+  # Aggrega i voti a livello nazionale, escludendo Valle d’Aosta per la quota proporzionale
+  aggrega_risultati_circoscrizioni:
+    type: aggregate
+    source:
+      type: fun
+      name: self.subs_circoscrizioni_get_risultati  # Richiama i risultati di ogni circoscrizione
+    keys:
+      - Partito             # Aggrega per 'Partito'
+      - Coalizione
+    ops:
+      Voti: sum             # Somma i voti totali per ogni partito
+      Cifra: sum            # Somma la cifra elettorale per ogni partito
+    filter:
+      - condition: "self.circoscrizione != 'Valle d’Aosta"  # Esclude Valle d’Aosta dal proporzionale
+
+totals_support:
+  # Assegna i seggi proporzionali a livello nazionale
+  assegna_seggi_nazione:
+    source:
+      totals: aggrega_risultati_circoscrizioni
+      args:
+        - soglia  # Applica una soglia di sbarramento (specificata altrove)
+
+    type: transform
+    ops:
+      - type: dataframe
+        source:
+          type: fun
+          name: Commons.distribuzione_hare_nazionale  # Funzione D'Hondt per la distribuzione
+          kwargs:
+            seggi_totali:
+              source:
+                type: fun
+                name: self.get_totale_seggi_plurinominale  # Ricava il totale dei seggi da distribuire
